@@ -1,0 +1,21 @@
+{
+  "name": "fsme",
+  "version": "1.0.0",
+  "description": "Memory efficient file system module that groups together functions for handling large amounts of files.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "fs",
+    "file-system",
+    "memory-efficient",
+    "fsme"
+  ],
+  "author": "Ibragim Abubakarov <ibragim.ai95@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ibra-akv/fsme/issues"
+  },
+  "homepage": "https://github.com/ibra-akv/fsme"
+}
