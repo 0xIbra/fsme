@@ -1,8 +1,8 @@
 {
   "name": "fsme",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Memory efficient file system module that groups together functions for handling large amounts of files.",
-  "main": "index.js",
+  "main": "src/fsme.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
