@@ -21,3 +21,7 @@ API
 
  - `cleanDirSync`  
     Allows you to remove files in a folder in a memory friendly way without having to load the list of files into memory.
+
+
+ - `countDirFiles`  
+    Returns the number of files in a directory without draining the memory.
