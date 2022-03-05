@@ -1,22 +1,46 @@
 const { execSync } = require('child_process');
-const glob = require('glob');
-const path = require('path');
-const fs = require('fs');
 
-function listDirSync(directory) {
-    return glob(directory);
+/**
+ * Uses shell ls command and returns an array list of files.
+ * Supports regex as you know.
+ *
+ * @param directory
+ * @return array
+ */
+function lsSync(directory) {
+    let res = execSync(`ls ${directory}`).toString().split('\n');
+    res.pop();
+
+    return res;
+}
+
+/**
+ * Returns a defined number of files from a folder.
+ * Very useful when you have directories with millions of files.
+ * Allows you to iterate through those files without loading the whole list into memory.
+ *
+ * @param directory
+ * @param numberOfResults
+ * @return {string[]}
+ */
+function lseSync(directory, numberOfResults) {
+    let res = execSync(`find ${directory} | head -${numberOfResults}`).toString().split('\n');
+    res.pop();
+    res.shift();
+
+    return res;
 }
 
 /**
  * Allows to remove millions of files from a folder without draining memory.
- * Be aware, this function removes the directory and recreates it once all files deleted.
  *
  * @param dir
  * @return void
  */
 function cleanDirSync(dir) {
-    execSync(`rm -r ${dir}`);
-    fs.mkdirSync(dir, { recursive: true });
+    while (lseSync(dir, 5).length > 0) {
+        execSync(`find ${dir} -type f | head -100000 | xargs rm`);
+    }
 }
 
 /**
@@ -32,7 +56,8 @@ function countDirFiles(dir) {
 }
 
 module.exports = {
-    listDirSync,
+    lsSync,
+    lseSync,
     cleanDirSync,
     countDirFiles
 }
