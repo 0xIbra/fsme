@@ -1,6 +1,7 @@
 const { execSync } = require('child_process');
 const glob = require('glob');
 const path = require('path');
+const fs = require('fs');
 
 function listDirSync(directory) {
     return glob(directory);
@@ -8,13 +9,14 @@ function listDirSync(directory) {
 
 /**
  * Allows to remove millions of files from a folder without draining memory.
+ * Be aware, this function removes the directory and recreates it once all files deleted.
  *
  * @param dir
  * @return void
  */
 function cleanDirSync(dir) {
-    dir = path.join(dir, '*');
-    execSync(`for f in ${dir}; do rm "$f"; done`);
+    execSync(`rm -r ${dir}`);
+    fs.mkdirSync(dir, { recursive: true });
 }
 
 /**
