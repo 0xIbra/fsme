@@ -24,7 +24,7 @@ function lsSync(directory) {
  * @return {string[]}
  */
 function lseSync(directory, numberOfResults) {
-    let res = execSync(`find ${directory} | head -${numberOfResults}`).toString().split('\n');
+    let res = execSync(`find ${directory} 2>/dev/null | head -${numberOfResults}`).toString().split('\n');
     res.pop();
     res.shift();
 
